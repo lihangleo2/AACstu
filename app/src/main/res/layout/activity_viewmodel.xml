@@ -5,9 +5,24 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </RelativeLayout>
+
+       <FrameLayout
+           android:layout_marginTop="200dp"
+           android:id="@+id/frameLayout"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="match_parent"/>
+
+        <FrameLayout
+            android:layout_marginTop="200dp"
+            android:id="@+id/frameLayout_other"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 </layout>
