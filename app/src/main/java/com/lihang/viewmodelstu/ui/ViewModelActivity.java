@@ -63,8 +63,8 @@ public class ViewModelActivity extends FragmentActivity {
     private void addFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        OneFragment oneFragment = new OneFragment(0);
-        OneFragment oneFragment_other = new OneFragment(1);
+        OneFragment oneFragment = OneFragment.newInstance(0);
+        OneFragment oneFragment_other = OneFragment.newInstance(1);
         ft.add(R.id.frameLayout, oneFragment);
         ft.add(R.id.frameLayout_other, oneFragment_other);
         ft.commit();

@@ -24,9 +24,12 @@ public class OneFragment extends Fragment {
     private int type;
     FragmentOneBinding binding;
 
-    public OneFragment(int type) {
-        this.type = type;
+    public static OneFragment newInstance(int type) {
+        OneFragment fragment = new OneFragment();
+        fragment.type = type;
+        return fragment;
     }
+
 
     @Nullable
     @Override
