@@ -2,6 +2,7 @@ package com.lihang.viewmodelstu.bean;
 
 import java.io.Serializable;
 
+
 /**
  * Created by leo
  * on 2019/10/8.
@@ -9,6 +10,11 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String name;
     private int age;
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
 
     public String getName() {
         return name;

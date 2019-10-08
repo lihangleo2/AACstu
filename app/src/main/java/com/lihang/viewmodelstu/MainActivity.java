@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.lihang.viewmodelstu.databinding.ActivityMainBinding;
-import com.lihang.viewmodelstu.ui.ViewModelActivity;
+import com.lihang.viewmodelstu.ui.activity.LiveDataActivity;
+import com.lihang.viewmodelstu.ui.activity.ViewModelActivity;
 import com.lihang.viewmodelstu.utils.ActivityUtils;
 
 
@@ -20,22 +21,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setOnClickListener(this);
-////        MyViewModel myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
-//        ViewModelProviders.of(this).get(MyViewModel.class).getDatas()
-//                .observe(this, new Observer<User>() {
-//                    @Override
-//                    public void onChanged(User user) {
-//                        //获取实体数据
-//                        Log.e("实体数据", user.hashCode() + "");
-//                    }
-//                });
-//
-//        binding.btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ViewModelProviders.of(MainActivity.this).get(MyViewModel.class).getUser();
-//            }
-//        });
     }
 
     @Override
@@ -43,6 +28,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_viewModel:
                 ActivityUtils.transfer(MainActivity.this, ViewModelActivity.class);
+                break;
+
+            case R.id.btn_liveData:
+                ActivityUtils.transfer(MainActivity.this, LiveDataActivity.class);
                 break;
         }
     }

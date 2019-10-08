@@ -29,6 +29,15 @@
             android:onClick="@{onClickListener}"
             />
 
+        <Button
+            android:id="@+id/btn_liveData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LiveData的介绍和使用"
+            android:textAllCaps="false"
+            android:onClick="@{onClickListener}"
+            />
+
     </LinearLayout>
 
 </layout>
