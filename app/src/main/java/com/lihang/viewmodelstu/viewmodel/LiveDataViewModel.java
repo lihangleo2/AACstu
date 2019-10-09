@@ -1,7 +1,5 @@
 package com.lihang.viewmodelstu.viewmodel;
 
-import com.lihang.viewmodelstu.bean.User;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,16 +9,10 @@ import androidx.lifecycle.ViewModel;
  * on 2019/10/8.
  */
 public class LiveDataViewModel extends ViewModel {
-    private MutableLiveData<User> userLiveData = new MutableLiveData<>();
+    private MutableLiveData<String> nameLiveData = new MutableLiveData<>();
 
-    public LiveData<User> getData() {
-        return userLiveData;
+    public MutableLiveData<String> getData() {
+        return nameLiveData;
     }
-
-    public void update(User user) {
-        userLiveData.postValue(user);
-//        userLiveData.setValue(user);
-    }
-
 
 }

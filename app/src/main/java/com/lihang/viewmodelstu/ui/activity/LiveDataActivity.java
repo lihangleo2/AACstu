@@ -1,19 +1,19 @@
 package com.lihang.viewmodelstu.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
+import android.text.Editable;
+import android.text.TextWatcher;
 
 import com.lihang.viewmodelstu.R;
-import com.lihang.viewmodelstu.bean.User;
+import com.lihang.viewmodelstu.bean.TestBean;
 import com.lihang.viewmodelstu.databinding.ActivityLivedataBinding;
-import com.lihang.viewmodelstu.utils.ToastUtils;
+import com.lihang.viewmodelstu.utils.LogUtils;
 import com.lihang.viewmodelstu.viewmodel.LiveDataViewModel;
-
-import java.util.Random;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -23,46 +23,104 @@ import androidx.lifecycle.ViewModelProviders;
  */
 public class LiveDataActivity extends AppCompatActivity {
     ActivityLivedataBinding binding;
-    LiveDataViewModel liveDataViewModel;
-    User user;
-
+    private MutableLiveData<String> liveData = new MutableLiveData<>();
+    private TestBean testBean = new TestBean();
+    private LiveDataViewModel model;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_livedata);
-        user = new User("岩浆", 18);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_livedata);
-        liveDataViewModel = ViewModelProviders.of(this).get(LiveDataViewModel.class);
-        binding.setLiveDataViewModel(liveDataViewModel);
-        liveDataViewModel.getData().observe(this, new Observer<User>() {
-            @Override
-            public void onChanged(User user) {
-                binding.setLiveDataViewModel(liveDataViewModel);
-                ToastUtils.showToast(liveDataViewModel.getData().getValue().getName() + liveDataViewModel.getData().getValue().getAge());
-            }
-        });
-        setListener();
+        binding.setOnlyLive(liveData.getValue());
+        binding.setDataBsource(testBean);
+        binding.setLifecycleOwner(this);
+        model = ViewModelProviders.of(this).get(LiveDataViewModel.class);
+        binding.setLiveViewModel(model);
+        addLiveObserve();
+        addTextViewChange();
+
     }
 
-    private void setListener() {
-        binding.btn.setOnClickListener(new View.OnClickListener() {
+    private void addTextViewChange() {
+        binding.txtOnlyLive.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                Random random = new Random();
-                int number = random.nextInt(100);
-                String name = "岩浆 ==> " + number;
-                user.setName(name);
-                liveDataViewModel.update(user);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                LogUtils.i("TextView的变化", "单独使用LiveData ==> " + s);
+            }
+        });
+
+
+        binding.txtDataBinding.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                LogUtils.i("TextView的变化", "DataBinding双向绑定 ==> " + s);
+            }
+        });
+
+
+        binding.txtViewmodelLivedata.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                LogUtils.i("TextView的变化", "ViewModel配合LiveData使用 ==> " + s);
+            }
+        });
+
+
+    }
+
+    private void addLiveObserve() {
+        liveData.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.setOnlyLive(s);
+                LogUtils.i("观察LiveData", "单独使用LiveData ==> " + s);
+            }
+        });
+
+        model.getData().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                LogUtils.i("观察LiveData", "ViewModel配合LiveData使用 ==> " + s);
             }
         });
     }
-
 
     @Override
     protected void onStop() {
         super.onStop();
-        User user = new User("stop中的岩浆", 18);
-        liveDataViewModel.update(user);
+        liveData.postValue("单独LiveData使用");
+        testBean.name.set("我是DataBinding双向绑定");
+        model.getData().postValue("ViewModel配合LiveData使用");
     }
 }
