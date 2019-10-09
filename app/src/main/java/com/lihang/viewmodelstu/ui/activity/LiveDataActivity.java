@@ -8,6 +8,7 @@ import com.lihang.viewmodelstu.R;
 import com.lihang.viewmodelstu.bean.TestBean;
 import com.lihang.viewmodelstu.databinding.ActivityLivedataBinding;
 import com.lihang.viewmodelstu.utils.LogUtils;
+import com.lihang.viewmodelstu.utils.ToastUtils;
 import com.lihang.viewmodelstu.viewmodel.LiveDataViewModel;
 
 import androidx.annotation.Nullable;
@@ -105,13 +106,6 @@ public class LiveDataActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 binding.setOnlyLive(s);
                 LogUtils.i("观察LiveData", "单独使用LiveData ==> " + s);
-            }
-        });
-
-        model.getData().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                LogUtils.i("观察LiveData", "ViewModel配合LiveData使用 ==> " + s);
             }
         });
     }
