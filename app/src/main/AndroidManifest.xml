@@ -21,6 +21,8 @@
         <activity android:name=".ui.activity.ViewModelActivity" />
 
         <activity android:name=".ui.activity.LiveDataActivity" />
+
+        <activity android:name=".ui.activity.RoomActivity" />
     </application>
 
 </manifest>
