@@ -31,6 +31,8 @@
 
         <activity android:name=".ui.activity.WithRxJavaActivity" />
 
+        <activity android:name=".ui.activity.LifecyclesActivity" />
+
     </application>
 
 

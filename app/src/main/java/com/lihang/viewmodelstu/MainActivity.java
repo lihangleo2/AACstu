@@ -1,7 +1,10 @@
 package com.lihang.viewmodelstu;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.Observer;
 
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.view.View;
 import com.lihang.viewmodelstu.databinding.ActivityMainBinding;
 import com.lihang.viewmodelstu.roomabout.DBInstance;
 import com.lihang.viewmodelstu.roomabout.withrxjava.Dog;
+import com.lihang.viewmodelstu.ui.activity.LifecyclesActivity;
 import com.lihang.viewmodelstu.ui.activity.LiveDataActivity;
 import com.lihang.viewmodelstu.ui.activity.RoomActivity;
 import com.lihang.viewmodelstu.ui.activity.ViewModelActivity;
@@ -59,7 +63,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 });
                 break;
 
-
+            case R.id.btn_with_lifecycles:
+                ActivityUtils.transfer(MainActivity.this, LifecyclesActivity.class);
+                break;
         }
     }
 }
