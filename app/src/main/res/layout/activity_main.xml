@@ -38,6 +38,35 @@
             android:onClick="@{onClickListener}"
             />
 
+
+        <Button
+            android:id="@+id/btn_room"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Room的介绍和使用"
+            android:textAllCaps="false"
+            android:onClick="@{onClickListener}"
+            />
+
+        <Button
+            android:id="@+id/btn_with_rxjava"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Room配合RxJava的使用"
+            android:textAllCaps="false"
+            android:onClick="@{onClickListener}"
+            />
+
+        <Button
+            android:id="@+id/btn_with_livedata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Room配合LiveData的使用"
+            android:textAllCaps="false"
+            android:onClick="@{onClickListener}"
+            />
+
+
     </LinearLayout>
 
 </layout>
